@@ -23,6 +23,7 @@ class PyperV():
         self.connection = winrm.Session(self.hv_host, auth=(self.hv_user, self.hv_pass))
 
     def run_ps_cmd(self, ps_cmd):
+        """ Main function to run the powershell commands and return the JSON output"""
         r = self.connection.run_ps(ps_cmd)
         try:
             reply_out = json.loads(r.std_out) or json.loads(r.std_err)
@@ -59,6 +60,9 @@ class PyperV():
         return out
 
     def export_vm(self, vm_name, export_path, dir_name):
+        """ The crown jewel, give it a VM name, Windows styled path tree (C:\etc\etc) and the name
+            of the VM folder you want to be exported to and it will do all the things
+        """
         full_dir = "%s%s" % (export_path, dir_name)
         # remove if exists first
         rm_dir = "Remove-Item '%s' -Force -Recurse" % full_dir

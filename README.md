@@ -9,6 +9,6 @@ c:\> winrm set winrm/config/service/auth '@{Basic="true"}'
 c:\> winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 
 
-# Requirements
-pywinrm
-json
+## Requirements
+*pywinrm
+*json
